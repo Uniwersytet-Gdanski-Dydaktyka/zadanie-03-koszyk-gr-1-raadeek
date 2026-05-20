@@ -1,0 +1,10 @@
+pl\javamarkt\promotions\CheapestFreePromotion.class
+pl\javamarkt\promotions\FivePercentOver300Promotion.class
+pl\javamarkt\PromotionService.class
+pl\javamarkt\Main.class
+pl\javamarkt\promotions\FreeMugOver200Promotion.class
+pl\javamarkt\Product.class
+pl\javamarkt\ProductUtils.class
+pl\javamarkt\Promotion.class
+pl\javamarkt\promotions\Coupon30PercentPromotion.class
+pl\javamarkt\Cart.class

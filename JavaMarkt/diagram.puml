@@ -1,0 +1,67 @@
+@startuml
+
+class Product {
+    - String code
+    - String name
+    - double price
+    - double discountPrice
+    + Product(String code, String name, double price)
+    + getCode() String
+    + getName() String
+    + getPrice() double
+    + getDiscountPrice() double
+    + setDiscountPrice(double discountPrice) void
+    + resetDiscountPrice() void
+    + copy() Product
+}
+
+class Cart {
+    - List<Product> products
+    - Comparator<Product> sortingStrategy
+    + addProduct(Product product) void
+    + removeProduct(Product product) void
+    + getProducts() List<Product>
+    + getSortedProducts() List<Product>
+    + setSortingStrategy(Comparator<Product>) void
+    + getTotalPrice() double
+    + isEmpty() boolean
+}
+
+class ProductUtils {
+    + findCheapest(List<Product>) Product
+    + findMostExpensive(List<Product>) Product
+    + findNCheapest(List<Product>, int) List<Product>
+    + findNMostExpensive(List<Product>, int) List<Product>
+    + sort(List<Product>, Comparator<Product>) List<Product>
+    + sumRegularPrices(List<Product>) double
+    + sumDiscountPrices(List<Product>) double
+    + clean(List<Product>) List<Product>
+    + copyProducts(List<Product>) List<Product>
+}
+
+interface Promotion {
+    + apply(List<Product>) void
+    + getName() String
+}
+
+class FivePercentOver300Promotion
+class CheapestFreePromotion
+class FreeMugOver200Promotion
+class Coupon30PercentPromotion
+
+class PromotionService {
+    + applyPromotions(List<Product>, List<Promotion>) void
+    + applyBestPromotionOrder(List<Product>, List<Promotion>) List<Product>
+}
+
+Cart "1" o-- "*" Product
+PromotionService ..> Promotion
+PromotionService ..> Product
+ProductUtils ..> Product
+
+Promotion <|.. FivePercentOver300Promotion
+Promotion <|.. CheapestFreePromotion
+Promotion <|.. FreeMugOver200Promotion
+Promotion <|.. Coupon30PercentPromotion
+
+@enduml
